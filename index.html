@@ -2,19 +2,14 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="css.css">
   <title>Captado</title>
   <script>
-			window.addEventListener('load', () => document.querySelector('.code-container').appendChild(document.createTextNode(document.querySelector('.source-code').innerText)));
-		</script>
-		<script class="source-code">
 			window.addEventListener('load', () => {
 				// noinspection JSUnresolvedVariable
 				let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 				let xhr = new XMLHttpRequest();
-				xhr.open('GET', 'alarma.mp3');
+				xhr.open('GET', 'alarm.mp3');
 				xhr.responseType = 'arraybuffer';
 				xhr.addEventListener('load', () => {
 					let playsound = (audioBuffer) => {
@@ -47,6 +42,5 @@
   <h4>Att. Jasmin<3</h4>
   <img class="alerta" src="alerta.gif" alt="alerta">
   </div>
-  <audio autoplay> <source src="alerta.mp3" type="audio/mp3"> Tu navegador no soporta HTML5 audio. </audio>
 </body>
 </html>
