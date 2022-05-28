@@ -1,0 +1,23 @@
+body {
+  color: red;
+  background-color: black;
+  text-align: center;
+}
+
+.warn {
+  width: 50%;
+}
+
+.alerta {
+  width: 10%;
+  height: 20%;
+}
+
+div {
+  display: flex;
+  padding: 0% 0% 0% 22%;
+}
+
+img {
+  padding: 5%;
+}

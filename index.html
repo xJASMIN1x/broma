@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css.css">
+  <title>Captado</title>
+  <script>
+			window.addEventListener('load', () => document.querySelector('.code-container').appendChild(document.createTextNode(document.querySelector('.source-code').innerText)));
+		</script>
+		<script class="source-code">
+			window.addEventListener('load', () => {
+				// noinspection JSUnresolvedVariable
+				let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+				let xhr = new XMLHttpRequest();
+				xhr.open('GET', 'alarma.mp3');
+				xhr.responseType = 'arraybuffer';
+				xhr.addEventListener('load', () => {
+					let playsound = (audioBuffer) => {
+						let source = audioCtx.createBufferSource();
+						source.buffer = audioBuffer;
+						source.connect(audioCtx.destination);
+						source.loop = false;
+						source.start();
+
+						setTimeout(function () {
+							let t = document.createElement('p');
+							t.appendChild(document.createTextNode((new Date()).toLocaleString() + ': Sound played'));
+							document.querySelector('.output').appendChild(t);
+							playsound(audioBuffer);
+						}, 1000 + Math.random()*2500);
+					};
+
+					audioCtx.decodeAudioData(xhr.response).then(playsound);
+				});
+				xhr.send();
+			});
+		</script>
+</head>
+<body>
+  <img class="warn" src="warning.gif" alt="Warning">
+  <h1>Haz sido capturado</h1>
+  <h3>Te descubri jajajajajaja</h3>
+  <div>
+  <img class="alerta" src="alerta.gif" alt="alerta">
+  <h4>Att. Jasmin<3</h4>
+  <img class="alerta" src="alerta.gif" alt="alerta">
+  </div>
+  <audio autoplay> <source src="alerta.mp3" type="audio/mp3"> Tu navegador no soporta HTML5 audio. </audio>
+</body>
+</html>
